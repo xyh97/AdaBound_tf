@@ -4,14 +4,10 @@ import tensorflow as tf
 import numpy as np
 from adabound_tf import AdaBoundOptimizer
 import random
+from tf.keras.datasets import mnist
 
-def load_data(path):
-    with np.load(path) as f:
-        x_train, y_train = f['x_train'], f['y_train']
-        x_test, y_test = f['x_test'], f['y_test']
-    return (x_train, y_train), (x_test, y_test)
 
-(x_train, y_train), (x_test, y_test) = load_data('./MNIST_data//mnist.npz')
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
 y_train_one_hot = np.zeros((y_train.shape[0], 10))
 y_test_one_hot = np.zeros((y_test.shape[0], 10))
 y_train_one_hot[np.arange(y_train.shape[0]), y_train] = 1
