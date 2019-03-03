@@ -79,7 +79,6 @@ class AdaBoundOptimizer(optimizer.Optimizer):
     self._epsilon = epsilon
     self._final_lr = final_lr
     self._gamma = gamma
-    self._step = 0
 
     # Tensor versions of the constructor arguments, created in _prepare().
     self._lr_t = None
@@ -137,9 +136,6 @@ class AdaBoundOptimizer(optimizer.Optimizer):
     self._epsilon_t = ops.convert_to_tensor(epsilon, name="epsilon")
     self._final_lr_t = ops.convert_to_tensor(final_lr, name="final_lr")
     self._gamma_t = ops.convert_to_tensor(gamma, name="gamma")
-
-    # self._step += 1
-    # print(self._step)
 
 
   def _apply_dense(self, grad, var):  
